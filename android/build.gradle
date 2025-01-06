@@ -2,14 +2,14 @@ group 'dev.badver.flutter_app_icon_badge'
 version '1.0-SNAPSHOT'
 
 buildscript {
-    ext.kotlin_version = '1.5.20'
+    ext.kotlin_version = '1.5.30'  // Updated Kotlin version to 1.5.30 or newer if needed
     repositories {
         google()
         jcenter()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.0.4'
+        classpath 'com.android.tools.build:gradle:7.2.0'  // Updated Android Gradle plugin
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
@@ -26,26 +26,39 @@ apply plugin: 'kotlin-android'
 
 android {
     namespace 'dev.badver.flutter_app_icon_badge'
-    compileSdkVersion 30
+    compileSdkVersion 32  // Updated to match the latest SDK version
 
-    sourceSets {
-        main.java.srcDirs += 'src/main/kotlin'
-    }
     defaultConfig {
         minSdkVersion 16
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8  // Ensuring Java 8 compatibility
+        targetCompatibility JavaVersion.VERSION_1_8  // Ensuring Java 8 compatibility
+
+        // Enable desugaring for Java 8 features
+        coreLibraryDesugaringEnabled true
+    }
+
+    // Set Java version to Java 8 for Kotlin compatibility
     java {
         toolchain {
             languageVersion = JavaLanguageVersion.of(8)
         }
     }
 
+    // Ensure Kotlin targets Java 8
     kotlinOptions {
-        jvmTarget = "1.8" 
+        jvmTarget = "1.8"
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
     }
 }
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "me.leolin:ShortcutBadger:1.1.22@aar"
+    implementation "me.leolin:ShortcutBadger:1.1.22@aar"  // Keep the ShortcutBadger dependency
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'  // Desugaring for Java 8 features
 }
