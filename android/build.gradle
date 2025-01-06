@@ -34,29 +34,21 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8  // Ensuring Java 8 compatibility
-        targetCompatibility JavaVersion.VERSION_1_8  // Ensuring Java 8 compatibility
-
-        // Enable desugaring for Java 8 features
-        coreLibraryDesugaringEnabled true
+     compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17  // Java 17
+        targetCompatibility JavaVersion.VERSION_17  // Java 17
     }
 
-    // Set Java version to Java 8 for Kotlin compatibility
-    // java {
-    //     toolchain {
-    //         languageVersion = JavaLanguageVersion.of(8)
-    //     }
-    // }
+    kotlinOptions {
+        jvmTarget = "17"  // Kotlin should also target Java 17
+    }
 
-    // // Ensure Kotlin targets Java 8
-    // kotlinOptions {
-    //     jvmTarget = "1.8"
-    // }
-
-    // sourceSets {
-    //     main.java.srcDirs += 'src/main/kotlin'
-    // }
+    // Use Java 17 toolchain explicitly
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(17)
+        }
+    }
 }
 
 dependencies {
