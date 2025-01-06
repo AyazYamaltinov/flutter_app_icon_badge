@@ -29,8 +29,9 @@ android {
     compileSdkVersion 32  // Updated to match the latest SDK version
 
     defaultConfig {
-        minSdkVersion 16
+        minSdkVersion 19
         multiDexEnabled true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     compileOptions {
@@ -42,20 +43,20 @@ android {
     }
 
     // Set Java version to Java 8 for Kotlin compatibility
-    java {
-        toolchain {
-            languageVersion = JavaLanguageVersion.of(8)
-        }
-    }
+    // java {
+    //     toolchain {
+    //         languageVersion = JavaLanguageVersion.of(8)
+    //     }
+    // }
 
-    // Ensure Kotlin targets Java 8
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
+    // // Ensure Kotlin targets Java 8
+    // kotlinOptions {
+    //     jvmTarget = "1.8"
+    // }
 
-    sourceSets {
-        main.java.srcDirs += 'src/main/kotlin'
-    }
+    // sourceSets {
+    //     main.java.srcDirs += 'src/main/kotlin'
+    // }
 }
 
 dependencies {
